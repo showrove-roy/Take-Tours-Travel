@@ -15,7 +15,7 @@ const Login = () => {
         </div>
         <div className='md:w-1/2'>
           <div className='card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100'>
-            <div className='card-body'>
+            <form className='card-body'>
               <h1 className='md:text-5xl text-2xl font-bold text-center'>
                 Login
               </h1>
@@ -25,9 +25,11 @@ const Login = () => {
                   <span className='label-text'>Email</span>
                 </label>
                 <input
-                  type='text'
+                  type='email'
                   placeholder='email'
                   className='input input-bordered'
+                  name='email'
+                  required
                 />
               </div>
               <div className='form-control'>
@@ -35,9 +37,11 @@ const Login = () => {
                   <span className='label-text'>Password</span>
                 </label>
                 <input
-                  type='text'
+                  type='password'
                   placeholder='password'
                   className='input input-bordered'
+                  name='password'
+                  required
                 />
                 <label className='label'>
                   <Link className='label-text-alt link link-hover'>
@@ -46,7 +50,9 @@ const Login = () => {
                 </label>
               </div>
               <div className='form-control mt-6'>
-                <button className='btn bg-[#EB6440] text-white hover:bg-[#F98E54]'>
+                <button
+                  type='submit'
+                  className='btn bg-[#EB6440] text-white hover:bg-[#F98E54]'>
                   Login
                 </button>
               </div>
@@ -71,7 +77,7 @@ const Login = () => {
                   Sign Up
                 </Link>
               </p>
-            </div>
+            </form>
           </div>
         </div>
       </div>
