@@ -16,7 +16,7 @@ const Footer = () => {
       </div>
       <div className='my-0 py-0'>
         <Link to='/login'>
-          <button className='btn btn-wide bg-[#EB6440] text-white hover:outline outline-[#EB6440] hover:text-[#EB6440]'>
+          <button className='btn btn-wide bg-[#EB6440] text-white hover:bg-[#F98E54]'>
             Log In
           </button>
         </Link>
