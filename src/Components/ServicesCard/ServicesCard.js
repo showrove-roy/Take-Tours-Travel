@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 
 const ServicesCard = ({ service }) => {
-  const { service_id, title, price, thumbnail_URL, description } = service;
+  const { _id, title, price, thumbnail_URL, description } = service;
   return (
     <div className='card bg-neutral shadow-xl rounded'>
       <figure>
         <PhotoProvider>
-          <div className='foo cursor-pointer'>
+          <div className='foo cursor-zoom-in'>
             <PhotoView src={thumbnail_URL}>
               <img src={thumbnail_URL} alt='' />
             </PhotoView>
@@ -26,7 +26,7 @@ const ServicesCard = ({ service }) => {
         </h2>
         <p>{description.slice(0, 100)}...</p>
         <div className='card-actions justify-end'>
-          <Link to={`/services/${service_id}`} className='btn btn-primary'>
+          <Link to={`/services/${_id}`} className='btn btn-primary'>
             View Details
           </Link>
         </div>
