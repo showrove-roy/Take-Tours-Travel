@@ -1,8 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/ttt-logo.png";
+import { useAuth } from "../../Contexts/Auth Context/AuthProvider";
+import { FaUserAlt } from "react-icons/fa";
 
 const Header = () => {
+  const { user } = useAuth();
+  console.log(user);
   const manus = (
     <>
       <li className='font-semibold'>
@@ -49,9 +53,27 @@ const Header = () => {
         <ul className='menu menu-horizontal p-0'>{manus}</ul>
       </div>
       <div className='navbar-end'>
-        <Link to='/login' className='btn'>
-          Login
-        </Link>
+        {user?.uid ? (
+          <div className='avatar md:w-11  mx-5 w-8 '>
+            {user?.photoURL ? (
+              <div className='w-12 rounded'>
+                <img
+                  src={user?.photoURL}
+                  alt={user?.displayName}
+                  title={user?.displayName}
+                />
+              </div>
+            ) : (
+              <FaUserAlt />
+            )}
+          </div>
+        ) : (
+          <Link
+            to='/login'
+            className='btn btn-sm bg-[#EB6440] text-white hover:bg-[#F98E54]'>
+            Login
+          </Link>
+        )}
       </div>
     </div>
   );

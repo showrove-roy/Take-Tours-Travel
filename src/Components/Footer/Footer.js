@@ -2,8 +2,17 @@ import React from "react";
 import "./Footer.css";
 import logo from "../../assets/ttt-logo.png";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../Contexts/Auth Context/AuthProvider";
 
 const Footer = () => {
+  const { user, logOut } = useAuth();
+
+  // Logout handel
+  const logOutHandel = () => {
+    logOut()
+      .then()
+      .catch((err) => console.error(err));
+  };
   return (
     <footer className='footer footer-center p-10 bg-neutral gap-3 '>
       <div>
@@ -15,11 +24,19 @@ const Footer = () => {
         <p>Copyright © 2022</p>
       </div>
       <div className='my-0 py-0'>
-        <Link to='/login'>
-          <button className='btn btn-wide bg-[#EB6440] text-white hover:bg-[#F98E54]'>
-            Log In
+        {user?.uid ? (
+          <button
+            onClick={logOutHandel}
+            className='btn btn-wide bg-[#EB6440] text-white hover:bg-[#F98E54]'>
+            Log Out
           </button>
-        </Link>
+        ) : (
+          <Link to='/login'>
+            <button className='btn btn-wide bg-[#EB6440] text-white hover:bg-[#F98E54]'>
+              Log In
+            </button>
+          </Link>
+        )}
       </div>
       <div>
         <div className='grid grid-flow-col gap-4'>
