@@ -6,8 +6,18 @@ import { useAuth } from "../../Contexts/Auth Context/AuthProvider";
 
 const SignUp = () => {
   // get auth info
-  const { createUser } = useAuth();
+  const { createUser, updateUserProfile, googleLogin } = useAuth();
+  // Google Login Handel
+  const googleLoginHandel = () => {
+    googleLogin()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => console.error(error));
+  };
 
+  // Create user with email & password
   const createUserHandel = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -20,8 +30,17 @@ const SignUp = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        updateUserProfileHandel(name, photoURL);
         form.reset();
       })
+      .catch((err) => console.error(err));
+  };
+
+  //Update a user's profile
+
+  const updateUserProfileHandel = (displayName, photoURL) => {
+    updateUserProfile(displayName, photoURL)
+      .then(() => {})
       .catch((err) => console.error(err));
   };
   return (
@@ -108,7 +127,9 @@ const SignUp = () => {
                 <span className='h-10 w-10 text-[#FF3811] bg-[#eaeaed] rounded-full flex justify-center items-center cursor-pointer hover:scale-110 hover:border-2 border-[#FF3811] ease-linear duration-200 '>
                   <FaFacebook></FaFacebook>
                 </span>
-                <span className='h-10 w-10 text-[#FF3811] bg-[#eaeaed] rounded-full flex justify-center items-center cursor-pointer hover:scale-110 hover:border-2 border-[#FF3811] ease-linear duration-200 '>
+                <span
+                  onClick={googleLoginHandel}
+                  className='h-10 w-10 text-[#FF3811] bg-[#eaeaed] rounded-full flex justify-center items-center cursor-pointer hover:scale-110 hover:border-2 border-[#FF3811] ease-linear duration-200 '>
                   <FaGoogle></FaGoogle>
                 </span>
                 <span className='h-10 w-10 text-[#FF3811] bg-[#eaeaed] rounded-full flex justify-center items-center cursor-pointer hover:scale-110 hover:border-2 border-[#FF3811] ease-linear duration-200 '>
