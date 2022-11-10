@@ -5,7 +5,7 @@ import { FaFacebook, FaGoogle, FaLinkedinIn } from "react-icons/fa";
 import { useAuth } from "../../Contexts/Auth Context/AuthProvider";
 
 const Login = () => {
-  const { googleLogin } = useAuth();
+  const { googleLogin, loginUser } = useAuth();
   // Google Login Handel
   const googleLoginHandel = () => {
     googleLogin()
@@ -14,6 +14,21 @@ const Login = () => {
         console.log(user);
       })
       .catch((error) => console.error(error));
+  };
+
+  // User login using email & password
+  const loginUserHandel = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    loginUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        form.reset();
+      })
+      .catch((err) => console.error(err));
   };
   return (
     <div className='hero min-h-screen bg-base-200'>
@@ -26,7 +41,7 @@ const Login = () => {
         </div>
         <div className='md:w-1/2'>
           <div className='card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100'>
-            <form className='card-body'>
+            <form onSubmit={loginUserHandel} className='card-body'>
               <h1 className='md:text-5xl text-2xl font-bold text-center'>
                 Login
               </h1>

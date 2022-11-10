@@ -2,8 +2,28 @@ import { Player } from "@lottiefiles/react-lottie-player";
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaFacebook, FaGoogle, FaLinkedinIn } from "react-icons/fa";
+import { useAuth } from "../../Contexts/Auth Context/AuthProvider";
 
 const SignUp = () => {
+  // get auth info
+  const { createUser } = useAuth();
+
+  const createUserHandel = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    const photoURL = form.photoURL.value;
+    console.log(name, email, password, photoURL);
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        form.reset();
+      })
+      .catch((err) => console.error(err));
+  };
   return (
     <div className='hero min-h-screen bg-base-200'>
       <div className='hero-content flex-col lg:flex-row'>
@@ -15,7 +35,7 @@ const SignUp = () => {
         </div>
         <div className='md:w-2/3'>
           <div className='card flex-shrink-0 w-full shadow-2xl bg-base-100'>
-            <form className='card-body'>
+            <form onSubmit={createUserHandel} className='card-body'>
               <h1 className='md:text-5xl text-2xl font-bold text-center'>
                 Sign Up
               </h1>
@@ -69,7 +89,6 @@ const SignUp = () => {
                     placeholder='EX: ( https://thumb/Cat03.jpg )'
                     className='input input-bordered'
                     name='photoURL'
-                    required
                   />
                 </div>
               </div>
