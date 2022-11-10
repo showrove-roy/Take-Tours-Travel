@@ -1,6 +1,6 @@
 import { Player } from "@lottiefiles/react-lottie-player";
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import ServicesCard from "../ServicesCard/ServicesCard";
 import {
   BsFacebook,
@@ -42,6 +42,14 @@ const Home = () => {
             <ServicesCard key={service._id} service={service}></ServicesCard>
           ))}
         </div>
+      </div>
+
+      <div className='w-fit mx-auto my-10'>
+        <Link
+          to='/services'
+          className='btn btn-primary rounded border-none bg-[#EB6440] hover:bg-[#F98E54]'>
+          Show All
+        </Link>
       </div>
 
       <h3 className='text-3xl font-bold capitalize text-center mt-16 mb-5'>
