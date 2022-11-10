@@ -14,6 +14,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
+        loader: () => fetch("http://localhost:5000/services?limit=3"),
         element: <Home></Home>,
       },
       {
@@ -22,6 +23,8 @@ const router = createBrowserRouter([
       },
       {
         path: "/services/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/services/${params.id}`),
         element: <ServiceDetails></ServiceDetails>,
       },
       {
