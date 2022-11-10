@@ -6,7 +6,6 @@ import { FaUserAlt } from "react-icons/fa";
 
 const Header = () => {
   const { user } = useAuth();
-  console.log(user);
   const manus = (
     <>
       <li className='font-semibold'>
