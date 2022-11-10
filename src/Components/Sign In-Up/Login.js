@@ -2,8 +2,19 @@ import { Player } from "@lottiefiles/react-lottie-player";
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaFacebook, FaGoogle, FaLinkedinIn } from "react-icons/fa";
+import { useAuth } from "../../Contexts/Auth Context/AuthProvider";
 
 const Login = () => {
+  const { googleLogin } = useAuth();
+  // Google Login Handel
+  const googleLoginHandel = () => {
+    googleLogin()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => console.error(error));
+  };
   return (
     <div className='hero min-h-screen bg-base-200'>
       <div className='hero-content flex-col lg:flex-row'>
@@ -64,7 +75,9 @@ const Login = () => {
                 <span className='h-10 w-10 text-[#FF3811] bg-[#eaeaed] rounded-full flex justify-center items-center cursor-pointer hover:scale-110 hover:border-2 border-[#FF3811] ease-linear duration-200 '>
                   <FaFacebook></FaFacebook>
                 </span>
-                <span className='h-10 w-10 text-[#FF3811] bg-[#eaeaed] rounded-full flex justify-center items-center cursor-pointer hover:scale-110 hover:border-2 border-[#FF3811] ease-linear duration-200 '>
+                <span
+                  onClick={googleLoginHandel}
+                  className='h-10 w-10 text-[#FF3811] bg-[#eaeaed] rounded-full flex justify-center items-center cursor-pointer hover:scale-110 hover:border-2 border-[#FF3811] ease-linear duration-200 '>
                   <FaGoogle></FaGoogle>
                 </span>
                 <span className='h-10 w-10 text-[#FF3811] bg-[#eaeaed] rounded-full flex justify-center items-center cursor-pointer hover:scale-110 hover:border-2 border-[#FF3811] ease-linear duration-200 '>
