@@ -1,0 +1,50 @@
+[
+    {
+        "service_id":"01",
+        "title":"5 Days Friends Package in Bangkok",
+        "rating":"4",
+        "price":"650",
+        "thumbnail_URL":"https://i.ibb.co/2dTBmz6/1.png",
+        "description":"From the picturesque white sand beaches like Railay to the ancient relics, Thailand is indeed the perfect destination for a fun-filled vacation. The sweet taste of much-famed nightlife, the delicious cuisine of Chiang Mai and the thrill of unique water sports make this place a must-visit destination. Whether you spend your time witnessing the architectural brilliance of renowned temples of Wat Pho or Wat Phra Kaew, stroll around barefoot on the stretches of white sandy beaches fringed with casuarinas and palms, getting a sweet taste of Phuket after sundown at Soi Bangla or an adventurous excursion to Phi Phi Island, this tour has everything for a perfect getaway in the tropical paradise."
+    },
+    {
+        "service_id":"02",
+        "title":"3 Days Family Package in Maldives",
+        "rating":"4.6",
+        "price":"400",
+        "thumbnail_URL":"https://i.ibb.co/PNh6SRG/2.png",
+        "description":"Maldives, officially the Republic of Maldives, is an archipelagic state located in South Asia, situated in the Indian Ocean. It lies southwest of Sri Lanka and India, about 750 kilometres from the Asian continent's mainland."
+    },
+    {
+        "service_id":"03",
+        "title":"7 Days Europe Tour Package",
+        "rating":"4",
+        "price":"1200",
+        "thumbnail_URL":"https://i.ibb.co/C6TZQn9/3.png",
+        "description":"Europe is a landmass conventionally considered a continent in its own right because of its great physical size and the weight of its history and traditions. Europe is also a subcontinent of Eurasia and it's located entirely in the Northern Hemisphere and mostly in the Eastern Hemisphere"
+    },
+    {
+        "service_id":"04",
+        "title":"2 Days Corporate Tour Package in Singapore",
+        "rating":"4",
+        "price":"300",
+        "thumbnail_URL":"https://i.ibb.co/YByZwSt/4.png",
+        "description":"Singapore has been described as a playground for the rich, and it's true that the small city-state does have a certain sheen of wealth. But Singapore offers more than just high-end shopping malls, luxury hotels, and fine dining (though it's worth indulging in those a bit if you can). There is also a vibrant history and diverse ethnic quarters to discover, along with many family-friendly attractions and lovely public spaces that make exploring this slightly futuristic city worthwhile."
+    },
+    {
+        "service_id":"05",
+        "title":"Weekend Tour Package in Kolkata",
+        "rating":"4",
+        "price":"150",
+        "thumbnail_URL":"https://i.ibb.co/wgdsD2M/5.png",
+        "description":"Kolkata (formerly Calcutta) is the capital of India's West Bengal state. Founded as an East India Company trading post, it was India's capital under the British Raj from 1773–1911. Today it’s known for its grand colonial architecture, art galleries and cultural festivals. It’s also home to Mother House, headquarters of the Missionaries of Charity, founded by Mother Teresa, whose tomb is on site."
+    },
+    {
+        "service_id":"6",
+        "title":"3 Days Friends Package in Maldives",
+        "rating":"4.5",
+        "price":"500",
+        "thumbnail_URL":"https://i.ibb.co/T4tSgV8/6.png",
+        "description":"Maldives, officially the Republic of Maldives, is an archipelagic state located in South Asia, situated in the Indian Ocean. It lies southwest of Sri Lanka and India, about 750 kilometres from the Asian continent's mainland."
+    }
+]
