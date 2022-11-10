@@ -10,10 +10,7 @@ const SignUp = () => {
   // Google Login Handel
   const googleLoginHandel = () => {
     googleLogin()
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
-      })
+      .then(() => {})
       .catch((error) => console.error(error));
   };
 
