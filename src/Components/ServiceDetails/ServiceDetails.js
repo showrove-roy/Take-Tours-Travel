@@ -31,9 +31,23 @@ const ServiceDetails = () => {
         re_rating: userRating,
         re_text: message,
       };
-      console.log(review);
+
+      fetch("http://localhost:5000/review", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(review),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.acknowledged) {
+            alert("Review Added successfully");
+            event.target.reset();
+          }
+        })
+        .catch((err) => console.error(err));
     }
   };
+
   return (
     <div className='my-5 md:my-10'>
       <div className='mx-2 lg:mx-10'>
