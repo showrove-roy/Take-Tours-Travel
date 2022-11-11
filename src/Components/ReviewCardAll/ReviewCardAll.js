@@ -3,6 +3,7 @@ import ReadRating from "../Ratings/ReadRating/ReadRating";
 
 const ReviewCardAll = ({ review }) => {
   const { re_name, re_photo, re_rating, re_text } = review;
+
   return (
     <>
       <tr className='hidden md:table-row'>
