@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { useAuth } from "../../Contexts/Auth Context/AuthProvider";
 import { FaUserAlt } from "react-icons/fa";
 import ReadRating from "../Ratings/ReadRating/ReadRating";
 import CreateRating from "../Ratings/CreateRating/CreateRating";
+import ReviewCardAll from "../ReviewCardAll/ReviewCardAll";
 
 const ServiceDetails = () => {
   const [userRating, setUserRating] = useState(0);
+
+  // review store
+  const [storedReviews, setStoredReviews] = useState([]);
+  // reload state
+  const [reloadRE, setReloadRE] = useState(false);
   const service = useLoaderData();
   const { _id, thumbnail_URL, title, price, rating, description } = service;
 
@@ -41,12 +47,21 @@ const ServiceDetails = () => {
         .then((data) => {
           if (data.acknowledged) {
             alert("Review Added successfully");
+            setReloadRE(true);
             event.target.reset();
           }
         })
         .catch((err) => console.error(err));
     }
   };
+
+  // fetch for all reviews
+  useEffect(() => {
+    fetch("http://localhost:5000/review")
+      .then((res) => res.json())
+      .then((data) => setStoredReviews(data))
+      .catch((err) => console.error(err));
+  }, [reloadRE]);
 
   return (
     <div className='my-5 md:my-10'>
@@ -74,14 +89,26 @@ const ServiceDetails = () => {
       {/* review section */}
 
       <div className='my-10 flex justify-between flex-col-reverse md:flex-row'>
-        <div className='md:w-3/5  md:h-80 md:overflow-y-scroll nd:relative'>
+        <div className='md:w-3/5  md:h-[35rem] md:overflow-y-scroll nd:relative'>
           <h4 className='text-2xl text-center font-semibold md:sticky md:top-0 bg-neutral py-3'>
             Top Review
           </h4>
-          <div className='h-96'>
-            <h4 className='text-2xl text-center font-semibold'>
-              Top Review {userRating}
-            </h4>
+
+          <div className='my-3 ml-3'>
+            <table>
+              <thead>
+                <tr>
+                  <th className='py-5 pl-5 text-start'>User Info</th>
+                  <th className='py-5 text-start'>Rating</th>
+                  <th className='w-3/5 py-5 text-start'>Comment</th>
+                </tr>
+              </thead>
+              <tbody>
+                {storedReviews.map((review) => (
+                  <ReviewCardAll key={review._id} review={review} />
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
 
