@@ -96,7 +96,7 @@ const ServiceDetails = () => {
 
           <div className='my-3 ml-3'>
             <table>
-              <thead>
+              <thead className='hidden md:table-row-group'>
                 <tr>
                   <th className='py-5 pl-5 text-start'>User Info</th>
                   <th className='py-5 text-start'>Rating</th>
