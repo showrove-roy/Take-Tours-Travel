@@ -12,6 +12,28 @@ const ServiceDetails = () => {
 
   const { user } = useAuth();
 
+  const addReviewHandel = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const message = form.message.value;
+    if (message === "") {
+      alert("Please add Comment");
+      return;
+    } else if (userRating === 0) {
+      alert("Please add rating");
+      return;
+    } else {
+      const review = {
+        se_id: _id,
+        re_name: user?.displayName,
+        re_email: user?.email,
+        re_photo: user?.photoURL,
+        re_rating: userRating,
+        re_text: message,
+      };
+      console.log(review);
+    }
+  };
   return (
     <div className='my-5 md:my-10'>
       <div className='mx-2 lg:mx-10'>
@@ -77,18 +99,19 @@ const ServiceDetails = () => {
               <span className='label-text'>Your Rating</span>
               <CreateRating setUserRating={setUserRating} />
             </span>
-            <form>
+            <form onSubmit={addReviewHandel}>
               <div className='form-control w-full'>
                 <label className='label'>
                   <span className='label-text'>Your Comment</span>
                 </label>
                 <textarea
                   className='textarea textarea-bordered h-24'
-                  placeholder=''></textarea>
+                  placeholder='Type Here'
+                  name='message'></textarea>
               </div>
 
               <input
-                type='button'
+                type='submit'
                 className={`btn btn-primary text-white my-5 ${
                   user?.uid ? "" : "btn-disabled"
                 }`}
