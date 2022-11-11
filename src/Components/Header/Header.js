@@ -5,7 +5,7 @@ import { useAuth } from "../../Contexts/Auth Context/AuthProvider";
 import { FaUserAlt } from "react-icons/fa";
 
 const Header = () => {
-  const { user } = useAuth();
+  const { user, logOut } = useAuth();
   const manus = (
     <>
       <li className='font-semibold'>
@@ -17,8 +17,24 @@ const Header = () => {
       <li className='font-semibold'>
         <Link to='/blogs'>Blog</Link>
       </li>
+      {user?.uid ? (
+        <>
+          <li className='font-semibold'>
+            <Link to='/myreviews'>My Review</Link>
+          </li>
+          <li className='font-semibold'>
+            <Link to='/addservices'>Add Service</Link>
+          </li>
+        </>
+      ) : null}
     </>
   );
+  // Logout handel
+  const logOutHandel = () => {
+    logOut()
+      .then()
+      .catch((err) => console.error(err));
+  };
   return (
     <div className='navbar bg-neutral sticky top-0 z-50'>
       <div className='navbar-start'>
@@ -53,19 +69,27 @@ const Header = () => {
       </div>
       <div className='navbar-end'>
         {user?.uid ? (
-          <div className='avatar md:w-11  mx-5 w-8 '>
-            {user?.photoURL ? (
-              <div className='w-12 rounded'>
-                <img
-                  src={user?.photoURL}
-                  alt={user?.displayName}
-                  title={user?.displayName}
-                />
-              </div>
-            ) : (
-              <FaUserAlt />
-            )}
-          </div>
+          <>
+            <div className='avatar md:w-11  mx-5 w-8 '>
+              {user?.photoURL ? (
+                <div className='w-12 rounded'>
+                  <img
+                    src={user?.photoURL}
+                    alt={user?.displayName}
+                    title={user?.displayName}
+                  />
+                </div>
+              ) : (
+                <FaUserAlt />
+              )}
+            </div>
+
+            <Link
+              onClick={logOutHandel}
+              className='btn btn-sm bg-[#EB6440] text-white hover:bg-[#F98E54]'>
+              Log Out
+            </Link>
+          </>
         ) : (
           <Link
             to='/login'

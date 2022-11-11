@@ -5,15 +5,14 @@ import { useAuth } from "../../Contexts/Auth Context/AuthProvider";
 import CreateRating from "../Ratings/CreateRating/CreateRating";
 import ReviewCardAll from "../ReviewCardAll/ReviewCardAll";
 
-const ReviewSection = ({ serviceId }) => {
+const ReviewSection = ({ service }) => {
+  const { _id, title } = service;
   const [userRating, setUserRating] = useState(0);
 
   // review store
   const [storedReviews, setStoredReviews] = useState([]);
 
-  const filterServices = storedReviews.filter(
-    (serv) => serv.se_id === serviceId
-  );
+  const filterServices = storedReviews.filter((serv) => serv.se_id === _id);
   // reload state
   const [reloadRE, setReloadRE] = useState(false);
   const { user } = useAuth();
@@ -29,13 +28,17 @@ const ReviewSection = ({ serviceId }) => {
       alert("Please add rating");
       return;
     } else {
+      setReloadRE(false);
       const review = {
-        se_id: serviceId,
+        se_id: _id,
+        se_title: title,
         re_name: user?.displayName,
         re_email: user?.email,
         re_photo: user?.photoURL,
+        re_uid: user?.uid,
         re_rating: userRating,
         re_text: message,
+        timestamp: new Date(),
       };
 
       fetch("http://localhost:5000/review", {

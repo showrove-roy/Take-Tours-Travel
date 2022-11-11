@@ -6,7 +6,7 @@ import ReviewSection from "../ReviewSection/ReviewSection";
 
 const ServiceDetails = () => {
   const service = useLoaderData();
-  const { _id, thumbnail_URL, title, price, rating, description } = service;
+  const { thumbnail_URL, title, price, rating, description } = service;
 
   return (
     <div className='my-5 md:my-10'>
@@ -32,7 +32,7 @@ const ServiceDetails = () => {
       </div>
 
       {/* review section */}
-      <ReviewSection serviceId={_id} />
+      <ReviewSection service={service} />
     </div>
   );
 };
