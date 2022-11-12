@@ -43,7 +43,7 @@ const ReviewSection = ({ service, setReviewOnTime }) => {
         timestamp: new Date(),
       };
 
-      fetch("http://localhost:5000/review", {
+      fetch("https://take-tour-travel-server-showrove-roy.vercel.app/review", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(review),
@@ -71,11 +71,14 @@ const ReviewSection = ({ service, setReviewOnTime }) => {
       new_rating,
     };
 
-    fetch(`http://localhost:5000/services/${_id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(ratingNum),
-    })
+    fetch(
+      `https://take-tour-travel-server-showrove-roy.vercel.app/services/${_id}`,
+      {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(ratingNum),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -88,7 +91,7 @@ const ReviewSection = ({ service, setReviewOnTime }) => {
 
   // fetch for all reviews
   useEffect(() => {
-    fetch("http://localhost:5000/review")
+    fetch("https://take-tour-travel-server-showrove-roy.vercel.app/review")
       .then((res) => res.json())
       .then((data) => setStoredReviews(data))
       .catch((err) => console.error(err));

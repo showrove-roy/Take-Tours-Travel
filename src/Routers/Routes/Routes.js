@@ -19,18 +19,26 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        loader: () => fetch("http://localhost:5000/services?limit=3"),
+        loader: () =>
+          fetch(
+            "https://take-tour-travel-server-showrove-roy.vercel.app/services?limit=3"
+          ),
         element: <Home></Home>,
       },
       {
         path: "/services",
-        loader: () => fetch("http://localhost:5000/services"),
+        loader: () =>
+          fetch(
+            "https://take-tour-travel-server-showrove-roy.vercel.app/services"
+          ),
         element: <Services></Services>,
       },
       {
         path: "/services/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/services/${params.id}`),
+          fetch(
+            `https://take-tour-travel-server-showrove-roy.vercel.app/services/${params.id}`
+          ),
         element: <ServiceDetails></ServiceDetails>,
       },
       {
@@ -48,7 +56,9 @@ const router = createBrowserRouter([
       {
         path: "/editreview/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/single-review/${params.id}`),
+          fetch(
+            `https://take-tour-travel-server-showrove-roy.vercel.app/single-review/${params.id}`
+          ),
         element: (
           <PrivateRoute>
             <Editreview></Editreview>

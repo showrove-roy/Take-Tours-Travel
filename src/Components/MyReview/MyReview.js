@@ -10,7 +10,9 @@ const MyReview = () => {
   const [myAllReview, setMyAllReview] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/review/${user?.uid}`)
+    fetch(
+      `https://take-tour-travel-server-showrove-roy.vercel.app/review/${user?.uid}`
+    )
       .then((res) => res.json())
       .then((data) => setMyAllReview(data))
       .catch((err) => console.error(err));

@@ -11,9 +11,12 @@ const SingleReview = ({ review, setReLoad }) => {
     const process = window.confirm("Are You sure to delete?");
     if (process) {
       setReLoad(false);
-      fetch(`http://localhost:5000/review/${_id}`, {
-        method: "DELETE",
-      })
+      fetch(
+        `https://take-tour-travel-server-showrove-roy.vercel.app/review/${_id}`,
+        {
+          method: "DELETE",
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           if (data.deletedCount > 0) {

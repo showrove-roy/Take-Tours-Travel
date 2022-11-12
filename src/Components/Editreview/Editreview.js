@@ -32,11 +32,14 @@ const Editreview = () => {
       nRe_rating: userRating,
       nRe_text: message,
     };
-    fetch(`http://localhost:5000/single-review/${_id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newReview),
-    })
+    fetch(
+      `https://take-tour-travel-server-showrove-roy.vercel.app/single-review/${_id}`,
+      {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newReview),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
