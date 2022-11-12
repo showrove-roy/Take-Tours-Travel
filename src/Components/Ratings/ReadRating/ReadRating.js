@@ -3,7 +3,7 @@ import { BsStar, BsStarFill, BsStarHalf } from "react-icons/bs";
 
 const ReadRating = ({ ratingNum }) => {
   const ratingCount = () => {
-    if (ratingNum === 5) {
+    if (ratingNum == 5) {
       return (
         <>
           <BsStarFill></BsStarFill>

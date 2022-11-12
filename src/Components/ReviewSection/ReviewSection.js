@@ -5,8 +5,8 @@ import { useAuth } from "../../Contexts/Auth Context/AuthProvider";
 import CreateRating from "../Ratings/CreateRating/CreateRating";
 import ReviewCardAll from "../ReviewCardAll/ReviewCardAll";
 
-const ReviewSection = ({ service }) => {
-  const { _id, title } = service;
+const ReviewSection = ({ service, setReviewOnTime }) => {
+  const { _id, title, rating } = service;
   const [userRating, setUserRating] = useState(0);
 
   // review store
@@ -17,6 +17,8 @@ const ReviewSection = ({ service }) => {
   // reload state
   const [reloadRE, setReloadRE] = useState(false);
   const { user } = useAuth();
+
+  // Handel Add review
   const addReviewHandel = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -50,12 +52,39 @@ const ReviewSection = ({ service }) => {
         .then((data) => {
           if (data.acknowledged) {
             alert("Review Added successfully");
+            upDateRatingNum();
             setReloadRE(true);
             event.target.reset();
           }
         })
         .catch((err) => console.error(err));
     }
+  };
+
+  const upDateRatingNum = () => {
+    const oldRatingCount = 0;
+    const rating_Count = oldRatingCount + 1;
+    const setRating = parseFloat(rating) + parseInt(userRating);
+    const new_rating = (setRating / rating_Count).toFixed(1);
+
+    const ratingNum = {
+      rating_Count,
+      new_rating,
+    };
+
+    fetch(`http://localhost:5000/services/${_id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(ratingNum),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.acknowledged) {
+          setReviewOnTime(new_rating);
+        }
+      })
+      .catch((err) => console.error(err));
   };
 
   // fetch for all reviews
