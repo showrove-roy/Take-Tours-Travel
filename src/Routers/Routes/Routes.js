@@ -10,6 +10,7 @@ import Services from "../../Components/Services/Services";
 import Login from "../../Components/Sign In-Up/Login";
 import SignUp from "../../Components/Sign In-Up/SignUp";
 import Main from "../../Layout/Main";
+import PrivateRoute from "../Private/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -38,17 +39,29 @@ const router = createBrowserRouter([
       },
       {
         path: "/myreviews",
-        element: <MyReview></MyReview>,
+        element: (
+          <PrivateRoute>
+            <MyReview></MyReview>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/editreview/:id",
         loader: ({ params }) =>
           fetch(`http://localhost:5000/single-review/${params.id}`),
-        element: <Editreview></Editreview>,
+        element: (
+          <PrivateRoute>
+            <Editreview></Editreview>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/addservices",
-        element: <AddService></AddService>,
+        element: (
+          <PrivateRoute>
+            <AddService></AddService>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",

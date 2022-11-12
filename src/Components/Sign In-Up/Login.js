@@ -1,15 +1,19 @@
 import { Player } from "@lottiefiles/react-lottie-player";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaFacebook, FaGoogle, FaLinkedinIn } from "react-icons/fa";
 import { useAuth } from "../../Contexts/Auth Context/AuthProvider";
 
 const Login = () => {
+  let navigate = useNavigate();
+  let location = useLocation();
+  let from = location.state?.from?.pathname || "/";
+
   const { googleLogin, loginUser } = useAuth();
   // Google Login Handel
   const googleLoginHandel = () => {
     googleLogin()
-      .then(() => {})
+      .then(() => navigate(from, { replace: true }))
       .catch((error) => console.error(error));
   };
 
@@ -20,9 +24,8 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
     loginUser(email, password)
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
+      .then(() => {
+        navigate(from, { replace: true });
         form.reset();
       })
       .catch((err) => console.error(err));
