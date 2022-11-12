@@ -1,5 +1,6 @@
 import React from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import ReadRating from "../Ratings/ReadRating/ReadRating";
 
 const SingleReview = ({ review, setReLoad }) => {
@@ -35,9 +36,11 @@ const SingleReview = ({ review, setReLoad }) => {
           <p className='md:col-span-2 capitalize'>{re_text}</p>
         </div>
         <div className='card-actions md:w-1/6 mt-3 md:mt-0'>
-          <button className='btn btn-sm rounded-sm rounded-r-none btn-active btn-warning '>
-            <FaEdit />
-          </button>
+          <Link to={`/editreview/${_id}`}>
+            <button className='btn btn-sm rounded-sm rounded-r-none btn-active btn-warning '>
+              <FaEdit />
+            </button>
+          </Link>
           <button
             onClick={deleteHandel}
             className='btn btn-sm rounded-sm rounded-l-none btn-active btn-accent'>

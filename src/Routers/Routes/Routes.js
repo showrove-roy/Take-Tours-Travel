@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import AddService from "../../Components/AddService/AddService";
 import Blogs from "../../Components/Blogs/Blogs";
+import Editreview from "../../Components/Editreview/Editreview";
 import Error404 from "../../Components/Error404/Error404";
 import Home from "../../Components/Home/Home";
 import MyReview from "../../Components/MyReview/MyReview";
@@ -38,6 +39,12 @@ const router = createBrowserRouter([
       {
         path: "/myreviews",
         element: <MyReview></MyReview>,
+      },
+      {
+        path: "/editreview/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/single-review/${params.id}`),
+        element: <Editreview></Editreview>,
       },
       {
         path: "/addservices",

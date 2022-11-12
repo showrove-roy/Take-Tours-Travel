@@ -13,6 +13,7 @@ const ReviewSection = ({ service }) => {
   const [storedReviews, setStoredReviews] = useState([]);
 
   const filterServices = storedReviews.filter((serv) => serv.se_id === _id);
+
   // reload state
   const [reloadRE, setReloadRE] = useState(false);
   const { user } = useAuth();
