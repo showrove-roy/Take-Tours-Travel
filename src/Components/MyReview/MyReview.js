@@ -3,6 +3,7 @@ import { useAuth } from "../../Contexts/Auth Context/AuthProvider";
 import SingleReview from "../SingleReview/SingleReview";
 
 const MyReview = () => {
+  const [reLoad, setReLoad] = useState(false);
   const { user } = useAuth();
 
   const [myAllReview, setMyAllReview] = useState([]);
@@ -12,9 +13,7 @@ const MyReview = () => {
       .then((res) => res.json())
       .then((data) => setMyAllReview(data))
       .catch((err) => console.error(err));
-  }, [user?.uid]);
-
-  console.log(myAllReview);
+  }, [user?.uid, reLoad]);
 
   return (
     <div className='min-h-screen p-2 md:p-10'>
@@ -31,7 +30,10 @@ const MyReview = () => {
       <div className='my-5'>
         <div className=''>
           {myAllReview.map((review) => (
-            <SingleReview key={review._id} review={review}></SingleReview>
+            <SingleReview
+              key={review._id}
+              review={review}
+              setReLoad={setReLoad}></SingleReview>
           ))}
         </div>
       </div>
