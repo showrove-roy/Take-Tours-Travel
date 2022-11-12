@@ -6,7 +6,7 @@ import CreateRating from "../Ratings/CreateRating/CreateRating";
 import ReviewCardAll from "../ReviewCardAll/ReviewCardAll";
 
 const ReviewSection = ({ service, setReviewOnTime }) => {
-  const { _id, title, rating } = service;
+  const { _id, title, rating, rating_Count } = service;
   const [userRating, setUserRating] = useState(0);
 
   // review store
@@ -62,13 +62,12 @@ const ReviewSection = ({ service, setReviewOnTime }) => {
   };
 
   const upDateRatingNum = () => {
-    const oldRatingCount = 0;
-    const rating_Count = oldRatingCount + 1;
+    const ratingCount = rating_Count + 1;
     const setRating = parseFloat(rating) + parseInt(userRating);
-    const new_rating = (setRating / rating_Count).toFixed(1);
+    const new_rating = (setRating / ratingCount).toFixed(1);
 
     const ratingNum = {
-      rating_Count,
+      ratingCount,
       new_rating,
     };
 
