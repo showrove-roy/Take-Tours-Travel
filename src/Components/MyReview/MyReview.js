@@ -1,7 +1,42 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useAuth } from "../../Contexts/Auth Context/AuthProvider";
+import SingleReview from "../SingleReview/SingleReview";
 
 const MyReview = () => {
-  return <div></div>;
+  const { user } = useAuth();
+
+  const [myAllReview, setMyAllReview] = useState([]);
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/review/${user?.uid}`)
+      .then((res) => res.json())
+      .then((data) => setMyAllReview(data))
+      .catch((err) => console.error(err));
+  }, [user?.uid]);
+
+  console.log(myAllReview);
+
+  return (
+    <div className='min-h-screen p-2 md:p-10'>
+      {myAllReview.length ? (
+        <h2 className='text-4xl font-semibold text-center mt-5'>
+          My All Review
+        </h2>
+      ) : (
+        <h2 className='text-4xl font-semibold text-center mt-5'>
+          You didn't add any Review
+        </h2>
+      )}
+
+      <div className='my-5'>
+        <div className=''>
+          {myAllReview.map((review) => (
+            <SingleReview key={review._id} review={review}></SingleReview>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default MyReview;

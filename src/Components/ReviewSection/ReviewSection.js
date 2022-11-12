@@ -16,7 +16,6 @@ const ReviewSection = ({ service }) => {
   // reload state
   const [reloadRE, setReloadRE] = useState(false);
   const { user } = useAuth();
-
   const addReviewHandel = (event) => {
     event.preventDefault();
     const form = event.target;
