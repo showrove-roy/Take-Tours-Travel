@@ -1,8 +1,10 @@
 # Take Tours & Travel
 
-Live Link:[Go](https://take-tour-traver.web.app/)
+Live Link: [Go](https://take-tour-traver.web.app/)
 
-## I used those for this project
+Server Code: [Go](https://github.com/showrove-roy/Take-Tours-Travel-Server.git)
+
+## The Key Technologies Used in this Project
 
 - React js
 - Tailwind css & Daisy ui component library
